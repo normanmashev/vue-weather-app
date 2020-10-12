@@ -1,19 +1,3 @@
-# client
+# Simple weather application made with VueJS
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Find the main information about the weather in specific city just by typing the name of it to the search-bar. Weather information obtained with openweathermap.org API.
