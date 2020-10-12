@@ -2,4 +2,4 @@
 
 Find the main information about the weather in specific city just by typing the name of it to the search-bar. Weather information obtained with *openweathermap.org API*.
 
-![Image of the main page of the app]
+![](src/assets/main-page-screenshot.png)
