@@ -54,6 +54,7 @@
           </div>
         </div>
       </div>
+      <div class="not-found" v-else-if="found === false">Sorry, we couldn't find such city...</div>
       <Loader v-else />
     </main>
   </div>
@@ -72,18 +73,28 @@ export default {
       weather: {},
       weatherType: "",
       loading: true,
+      found: true
     };
   },
   methods: {
     async fetchWeather(e) {
       if (this.loading === true || e.key == "Enter") {
+        
+        this.found = true;
+
         await fetch(
           `${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`
         )
           .then((res) => res.json())
           .then((res) => (this.weather = res))
-          .catch((err) => console.log(err));
-        // fa-cloud-rain fa-snowflake fa-cloud-sun fa-sun fa-cloud fa-smog
+          .catch((err) => {
+          });
+
+        if(this.weather.cod === '404') {
+          this.found = false;
+          return;
+        }
+
         let weather = this.weather.weather[0].main;
 
         if (weather === "Clouds") this.weatherType = "fa-cloud";
@@ -261,6 +272,17 @@ main {
 }
 .fas {
   animation: 3s linear 1s infinite alternate slide;
+}
+.not-found {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: #fff;
+  font-weight: bold;
+  font-size: 3rem;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes slide {
